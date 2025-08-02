@@ -74,6 +74,7 @@ export default tseslint.config([
 - React Router (v7)
 - React Icons (v5)
 - @tanstack/react-query (v5)
+- axios (v1)
 
 ## Apis utilizadas
 
