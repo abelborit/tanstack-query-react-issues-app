@@ -11,9 +11,9 @@ export const IssueComment: FC<Props> = ({ body }) => {
       <div className="border border-gray-200 mt-2 rounded-md shadow-sm">
         <div className="flex items-center bg-blue-500 text-white p-2 rounded-t-md">
           <img
-            src="https://avatars.githubusercontent.com/u/1933404?v=4"
             alt="User Avatar"
             className="w-8 h-8 rounded-full"
+            src="https://avatars.githubusercontent.com/u/1933404?v=4"
           />
           <span className="mx-2">Pandaiolo commented</span>
         </div>
