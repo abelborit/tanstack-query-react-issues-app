@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router';
 
 import { GitApp } from '../GitApp';
-import { IssueView,ListView } from '../issues/views';
+import { IssueView, ListView } from '../issues/views';
 
 export const router = createBrowserRouter([
   {

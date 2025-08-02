@@ -5,9 +5,24 @@ export const IssueList = () => {
     <>
       {/* Botones de All, Open, Closed */}
       <div className="flex gap-4">
-        <button className="btn active" type='button'>All</button>
-        <button className="btn" type='button'>Open</button>
-        <button className="btn" type='button'>Closed</button>
+        <button
+          className="btn active"
+          type="button"
+        >
+          All
+        </button>
+        <button
+          className="btn"
+          type="button"
+        >
+          Open
+        </button>
+        <button
+          className="btn"
+          type="button"
+        >
+          Closed
+        </button>
       </div>
 
       {/* Lista de issues */}

@@ -6,13 +6,17 @@ export const IssueItem = () => {
 
   return (
     <div className="flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800">
-      <FiInfo className="min-w-10" color="red" size={30} />
+      <FiInfo
+        className="min-w-10"
+        color="red"
+        size={30}
+      />
       {/* <FiCheckCircle size={30} color="green" /> */}
 
       <div className="flex flex-col flex-grow px-2">
         <button
           className="hover:underline"
-        type='button'
+          type="button"
           onClick={() => void navigate(`/issues/issue/123`)}
         >
           Suggestion: why not make accessing and changing the state possible
@@ -30,7 +34,11 @@ export const IssueItem = () => {
         src="https://avatars.githubusercontent.com/u/1933404?v=4"
       />
       <div className="flex flex-col mx-2 items-center">
-        <FiMessageSquare className="min-w-5" color="gray" size={30} />
+        <FiMessageSquare
+          className="min-w-5"
+          color="gray"
+          size={30}
+        />
         <span className="px-4 text-gray-400">2</span>
       </div>
     </div>
