@@ -67,3 +67,9 @@ export default tseslint.config([
   },
 ])
 ```
+## Tecnologías usadas
+
+- React (v19)
+- TailwindCSS (v4)
+- React Router (v7)
+- React Icons (v5)
