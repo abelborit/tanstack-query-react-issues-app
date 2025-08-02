@@ -73,3 +73,10 @@ export default tseslint.config([
 - TailwindCSS (v4)
 - React Router (v7)
 - React Icons (v5)
+- @tanstack/react-query (v5)
+
+## Apis utilizadas
+
+- https://docs.github.com/en/rest/issues/labels?apiVersion=2022-11-28
+- https://github.com/facebook/react/issues
+- https://api.github.com/repos/facebook/react/labels (tiene límite de uso, puede que sea necesario crear un usuario y un api_key)
