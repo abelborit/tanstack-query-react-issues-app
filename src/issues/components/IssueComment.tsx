@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 interface Props {

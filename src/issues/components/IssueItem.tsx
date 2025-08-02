@@ -1,4 +1,4 @@
-import { FiCheckCircle,FiInfo, FiMessageSquare } from 'react-icons/fi';
+import { /* FiCheckCircle, */ FiInfo, FiMessageSquare } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 
 export const IssueItem = () => {
@@ -10,13 +10,14 @@ export const IssueItem = () => {
       {/* <FiCheckCircle size={30} color="green" /> */}
 
       <div className="flex flex-col flex-grow px-2">
-        <a
+        <button
           className="hover:underline"
-          onClick={() => navigate(`/issues/issue/123`)}
+        type='button'
+          onClick={() => void navigate(`/issues/issue/123`)}
         >
           Suggestion: why not make accessing and changing the state possible
           globally?
-        </a>
+        </button>
         <span className="text-gray-500">
           #25581 opened 2 days ago by{' '}
           <span className="font-bold">segfaulty1</span>
