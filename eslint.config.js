@@ -4,6 +4,7 @@ import { globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import eslint from '@eslint/js';
+import pluginQuery from '@tanstack/eslint-plugin-query'
 
 /* Plugins */
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -59,6 +60,7 @@ export default tseslint.config([
       reactHooks.configs['recommended-latest'], // React Hooks rules
       reactRefresh.configs.vite, // React Refresh rules for Vite
       eslintConfigPrettier, // Prettier rules to disable conflicting ESLint rules
+      pluginQuery.configs['flat/recommended'], // TanStack Query ESLint rules
     ],
     languageOptions: {
       ecmaVersion: 2020,
