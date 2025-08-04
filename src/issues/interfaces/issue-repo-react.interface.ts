@@ -13,7 +13,7 @@ export interface IssueRepoReactInterface {
   title: string;
   user: User;
   labels: LabelRepoReactInterface[];
-  state: string;
+  state: "open" | "close";
   locked: boolean;
   assignee: null;
   assignees: unknown[];
