@@ -5,5 +5,5 @@ export interface LabelRepoReactInterface {
   name: string;
   color: string;
   default: boolean;
-  description: string | null;
+  description?: string | null;
 }
