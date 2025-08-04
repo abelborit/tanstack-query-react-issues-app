@@ -1,7 +1,9 @@
 import { FiSkipBack } from 'react-icons/fi';
-import { useNavigate } from 'react-router';
+import { Navigate, useNavigate, useParams } from 'react-router';
 
+import { LoadingSpinner } from '../../shared/components';
 import { IssueComment } from '../components/IssueComment';
+import { useIssueByNumberQuery } from '../hooks';
 
 const comment1 =
   "It would provide the ability to create a state, read the state \r\nand set the state form anywhere in the code base.\r\n\r\nIt would be something like this:\r\n\r\n## adding the state to the global state\r\n\r\n```js\r\nimport {useGlobalState} from 'react';\r\nconst ProviderComponent = ()=>{\r\n\r\n  const [ceateState, _, _] = useGlobalState();\r\n\r\n  createState('provider', 'stateName', 'state value');\r\n  createState('provider', 'otherStateName', 'another state value');\r\n  // or maybe, set all the states in one line\r\n  createState('provider', {stateName: 'state value', anotherStateName: 'another state value'});\r\n\r\n  return <></>\r\n}\r\n```\r\n\r\n##  now I can use it like so:\r\n\r\n```js\r\nimport {useGlobalState} from 'react';\r\n\r\nconst ConsumerComponent = ()=>{\r\n  \r\n  const [_, getState, setState] = useGlobalState();\r\n\r\n  const providerStateCpy = getState('key', 'stateName');\r\n\r\n  const changeProviderState = ()=>{\r\n    setState('key', 'stateName', 'new state value');\r\n  }\r\n  return <p onClick={changeProviderState}>{providerStateCpy}</p>\r\n}\r\n```\r\nI wonder if it's a possible thing without making major changes though.";
@@ -12,6 +14,14 @@ const comment3 =
 
 export const IssueView = () => {
   const navigate = useNavigate();
+  const params = useParams();
+  // console.log({params});
+
+  const issueNumberAdapter = Number(params.issueNumber ?? 0);
+
+  const { issueByNumberQuery } = useIssueByNumberQuery({
+    issueNumber: issueNumberAdapter,
+  });
 
   const handleClick = () => {
     /* La función navigate(-1) de react-router a veces puede devolver una promesa (dependiendo de la versión y uso), por eso TypeScript y ESLint te advierten que deberías manejarla apropiadamente poque "@typescript-eslint/no-floating-promises" porque  previene que ejecutes una promesa sin manejar su resultado (ni con await, .then, .catch o void). */
@@ -20,6 +30,15 @@ export const IssueView = () => {
     /* Para navigate, que en general no necesita espera ni control de errores (como navigate('/home')), lo más limpio y correcto es usar el "void" */
     void navigate(-1);
   };
+
+  if (issueByNumberQuery.isLoading || issueByNumberQuery.isFetching) {
+    // return <span>Cargando Issue...</span>;
+    return <LoadingSpinner />;
+  }
+
+  if (!issueByNumberQuery.data) {
+    return <Navigate to="/404" />;
+  }
 
   return (
     <div className="mb-5">
