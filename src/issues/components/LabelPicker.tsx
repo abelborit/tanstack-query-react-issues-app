@@ -1,3 +1,4 @@
+import { LoadingSpinner } from '../../shared/components';
 import { useLabelsQuery } from '../hooks';
 
 export const LabelPicker = () => {
@@ -5,8 +6,8 @@ export const LabelPicker = () => {
 
   if (labelsQuery.isLoading || labelsQuery.isFetching) {
     return (
-      <div className="flex items-center animate-fade-in-scale">
-        <span>Cargando...</span>
+      <div className="flex items-center justify-center h-60 animate-fade-in-scale">
+        <LoadingSpinner />
       </div>
     );
   }
