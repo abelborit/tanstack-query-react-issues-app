@@ -5,11 +5,7 @@ export const LabelPicker = () => {
   const { labelsQuery } = useLabelsQuery();
 
   if (labelsQuery.isLoading || labelsQuery.isFetching) {
-    return (
-      <div className="flex items-center justify-center h-60 animate-fade-in-scale">
-        <LoadingSpinner />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (labelsQuery.error) {
