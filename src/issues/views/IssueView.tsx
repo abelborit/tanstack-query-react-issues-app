@@ -15,6 +15,8 @@ export const IssueView = () => {
   const { issueByNumberQuery, issueComments } = useIssueByNumberQuery({
     issueNumber: issueNumberAdapter,
   });
+  // console.log({ issueComments: issueComments.data });
+  // console.log({ issueByNumberQuery: issueByNumberQuery.data });
 
   const handleClick = () => {
     /* La función navigate(-1) de react-router a veces puede devolver una promesa (dependiendo de la versión y uso), por eso TypeScript y ESLint te advierten que deberías manejarla apropiadamente poque "@typescript-eslint/no-floating-promises" porque  previene que ejecutes una promesa sin manejar su resultado (ni con await, .then, .catch o void). */
@@ -49,16 +51,18 @@ export const IssueView = () => {
       {/* Primer comentario */}
       <IssueComment issueByNumberQuery={issueByNumberQuery.data} />
 
-      {issueComments.isLoading || issueComments.isFetching ? (
-        <LoadingSpinner />
-      ) : (
-        issueComments.data?.map((element) => (
-          <IssueComment
-            key={element.id}
-            issueByNumberQuery={element}
-          />
-        ))
-      )}
+      {issueByNumberQuery.data.comments > 0 ? (
+        issueComments.isLoading || issueComments.isFetching ? (
+          <LoadingSpinner />
+        ) : (
+          issueComments.data?.map((element) => (
+            <IssueComment
+              key={element.id}
+              issueByNumberQuery={element}
+            />
+          ))
+        )
+      ) : null}
     </div>
   );
 };
