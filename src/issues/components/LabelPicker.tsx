@@ -11,7 +11,6 @@ export const LabelPicker = () => {
   if (labelsQuery.error) {
     return (
       <div className="flex items-center animate-fade-in-scale">
-        <strong>Error:</strong>
         <pre className="whitespace-pre-wrap text-sm">
           {JSON.stringify(labelsQuery.error, null, 2)}
         </pre>
