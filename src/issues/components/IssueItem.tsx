@@ -36,12 +36,23 @@ export const IssueItem = ({ issue }: IssueItemProps) => {
     });
   };
 
+  const presetDataQuery = () => {
+    /* esta función será para preestablecer la data en caso en una petición anterior ya la hayamos obtenido, con la finalidad de ya no realizar otra petición para traer la misma data y así reducimos las consultas al backend */
+    /* en este caso vamos a almacenar la data que viene del -- { issue }: IssueItemProps -- en la query key de -- queryKey: ['issues_repo_react', issue.number], -- porque al final de cuentas es la misma pero colocándole el número del issue en cuestión */
+
+    /* queryClient.setQueryData(query_key, data_a_establecer, opciones) */
+    void queryClient.setQueryData(['issues_repo_react', issue.number], issue, {
+      updatedAt: Date.now() + 1000 * 60 * 5,
+    });
+  };
+
   return (
     <button
       className="flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800 animate-fade-in-scale cursor-pointer w-full"
       type="button"
       onClick={() => void navigate(`/issues/issue/${issue.number}`)}
       onMouseEnter={handlePrefetchDataQuery}
+      // onMouseEnter={presetDataQuery}
     >
       {issue.state === 'close' ? (
         <FiCheckCircle
