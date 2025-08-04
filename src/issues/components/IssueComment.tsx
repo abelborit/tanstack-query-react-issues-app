@@ -1,11 +1,13 @@
 import type { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-interface Props {
-  body: string;
+import type { IssueRepoReactInterface } from '../interfaces';
+
+interface IssueCommentProps {
+  issueByNumberQuery: IssueRepoReactInterface;
 }
 
-export const IssueComment: FC<Props> = ({ body }) => {
+export const IssueComment: FC<IssueCommentProps> = ({ issueByNumberQuery }) => {
   return (
     <div className="w-full">
       <div className="border border-gray-200 mt-2 rounded-md shadow-sm">
@@ -13,12 +15,12 @@ export const IssueComment: FC<Props> = ({ body }) => {
           <img
             alt="User Avatar"
             className="w-8 h-8 rounded-full"
-            src="https://avatars.githubusercontent.com/u/1933404?v=4"
+            src={issueByNumberQuery.user.avatar_url}
           />
-          <span className="mx-2">Pandaiolo commented</span>
+          <span className="mx-2">{issueByNumberQuery.user.login}</span>
         </div>
         <div className="p-4 bg-gray-700 text-white">
-          <ReactMarkdown>{body}</ReactMarkdown>
+          <ReactMarkdown>{issueByNumberQuery.body}</ReactMarkdown>
         </div>
       </div>
     </div>
