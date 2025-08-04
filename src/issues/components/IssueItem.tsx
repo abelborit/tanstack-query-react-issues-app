@@ -5,7 +5,7 @@ export const IssueItem = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800">
+    <div className="flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800 animate-fade-in-scale">
       <FiInfo
         className="min-w-10"
         color="red"

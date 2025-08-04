@@ -4,7 +4,7 @@ export const IssueList = () => {
   return (
     <>
       {/* Botones de All, Open, Closed */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 animate-fade-in-scale">
         <button
           className="btn active"
           type="button"
