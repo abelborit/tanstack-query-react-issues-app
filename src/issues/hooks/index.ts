@@ -1,0 +1,1 @@
+export { useLabelsQuery } from './useLabelsQuery';
