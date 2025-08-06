@@ -1,6 +1,5 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 
-import { LoadingSpinner } from '../../shared/components';
 import type {
   IssueRepoReactInterface,
   IssueState,
@@ -30,10 +29,6 @@ export const IssueList = ({
   issueState,
   issuesQuery,
 }: IssueListProps) => {
-  if (issuesQuery.isLoading || issuesQuery.isFetching) {
-    return <LoadingSpinner />;
-  }
-
   if (issuesQuery.error) {
     return (
       <div className="flex items-center animate-fade-in-scale">

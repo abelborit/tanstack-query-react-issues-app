@@ -6,11 +6,13 @@ import type { IssueState } from '../interfaces/issue-repo-react.interface';
 interface GetIssuesActionProps {
   issueState: IssueState;
   selectedLabels: string[];
+  page: number;
 }
 
 export const getIssuesAction = async ({
   issueState,
   selectedLabels,
+  page,
 }: GetIssuesActionProps): Promise<IssueRepoReactInterface[]> => {
   await sleep(1500);
 
@@ -23,6 +25,9 @@ export const getIssuesAction = async ({
   if (selectedLabels.length > 0) {
     params.append('labels', selectedLabels.join(','));
   }
+
+  params.append('page', page.toString());
+  params.append('per_page', '5');
 
   const { data } = await githubApi_AxiosInstance.get<IssueRepoReactInterface[]>(
     '/issues',
