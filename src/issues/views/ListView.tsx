@@ -1,11 +1,26 @@
+import { useState } from 'react';
+
 import { IssueList } from '../components/IssueList';
 import { LabelPicker } from '../components/LabelPicker';
+import { useIssuesQuery } from '../hooks';
+import type { IssueState } from '../interfaces/issue-repo-react.interface';
 
 export const ListView = () => {
+  const [issueState, setIssueState] = useState<IssueState>('all');
+  const { issuesQuery } = useIssuesQuery({ issueState });
+
+  const handleChangeIssueState = (newIssueState: IssueState) => {
+    setIssueState(newIssueState);
+  };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 mt-5">
       <div className="col-span-1 sm:col-span-2">
-        <IssueList />
+        <IssueList
+          handleChangeIssueState={handleChangeIssueState}
+          issuesQuery={issuesQuery}
+          issueState={issueState}
+        />
       </div>
 
       <div className="col-span-1 px-2">

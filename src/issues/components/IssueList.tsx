@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import type { UseQueryResult } from '@tanstack/react-query';
 
 import { LoadingSpinner } from '../../shared/components';
-import { useIssuesQuery } from '../hooks';
-import type { IssueState } from '../interfaces/issue-repo-react.interface';
+import type {
+  IssueRepoReactInterface,
+  IssueState,
+} from '../interfaces/issue-repo-react.interface';
 import { IssueItem } from './IssueItem';
 
 interface IssueStatesInterface {
@@ -10,20 +12,24 @@ interface IssueStatesInterface {
   value: IssueState;
 }
 
-const issueStates: IssueStatesInterface[] = [
+const issueStatesButton: IssueStatesInterface[] = [
   { label: 'All', value: 'all' },
   { label: 'Open', value: 'open' },
   { label: 'Closed', value: 'closed' },
 ];
 
-export const IssueList = () => {
-  const [issueState, setIssueState] = useState<IssueState>('all');
-  const { issuesQuery } = useIssuesQuery({issueState});
+interface IssueListProps {
+  issuesQuery: UseQueryResult<IssueRepoReactInterface[], Error>;
+  issueState: IssueState;
+  // eslint-disable-next-line no-unused-vars
+  handleChangeIssueState: (issueState: IssueState) => void;
+}
 
-  const handleChangeIssueState = (newIssueState: IssueState) => {
-    setIssueState(newIssueState);
-  };
-
+export const IssueList = ({
+  handleChangeIssueState,
+  issueState,
+  issuesQuery,
+}: IssueListProps) => {
   if (issuesQuery.isLoading || issuesQuery.isFetching) {
     return <LoadingSpinner />;
   }
@@ -41,7 +47,7 @@ export const IssueList = () => {
   return (
     <>
       <div className="flex gap-4 animate-fade-in-scale">
-        {issueStates.map(({ label, value }) => (
+        {issueStatesButton.map(({ label, value }) => (
           <button
             key={value}
             className={`btn cursor-pointer ${issueState === value ? 'active' : ''}`}
