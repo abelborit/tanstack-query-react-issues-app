@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { FiCheckCircle, FiInfo, FiMessageSquare } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 
+import { timeSince } from '../../helpers';
 import { getIssueByNumberAction, getIssueCommentsAction } from '../actions';
 import type { IssueRepoReactInterface } from '../interfaces';
 
@@ -72,7 +73,9 @@ export const IssueItem = ({ issue }: IssueItemProps) => {
         <span className="hover:underline">{issue.title}</span>
 
         <p className="text-gray-500">
-          <span>#{issue.number} opened 2 days ago by </span>
+          <span>
+            #{issue.number} opened {timeSince(issue.created_at)} ago by{' '}
+          </span>
           <span className="font-bold">{issue.user.login}</span>
         </p>
 
