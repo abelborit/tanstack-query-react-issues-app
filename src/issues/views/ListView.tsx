@@ -7,10 +7,21 @@ import type { IssueState } from '../interfaces/issue-repo-react.interface';
 
 export const ListView = () => {
   const [issueState, setIssueState] = useState<IssueState>('all');
-  const { issuesQuery } = useIssuesQuery({ issueState });
+  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
+  const { issuesQuery } = useIssuesQuery({ issueState, selectedLabels });
 
   const handleChangeIssueState = (newIssueState: IssueState) => {
     setIssueState(newIssueState);
+  };
+
+  const handleChangeSelectedLabels = (newSelectedLabel: string) => {
+    if (selectedLabels.includes(newSelectedLabel)) {
+      setSelectedLabels(() =>
+        selectedLabels.filter((label) => label !== newSelectedLabel),
+      );
+    } else {
+      setSelectedLabels([...selectedLabels, newSelectedLabel]);
+    }
   };
 
   return (
@@ -24,7 +35,10 @@ export const ListView = () => {
       </div>
 
       <div className="col-span-1 px-2">
-        <LabelPicker />
+        <LabelPicker
+          handleChangeSelectedLabels={handleChangeSelectedLabels}
+          selectedLabels={selectedLabels}
+        />
       </div>
     </div>
   );

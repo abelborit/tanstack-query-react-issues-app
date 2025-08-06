@@ -41,6 +41,10 @@ pre {
   @apply bg-blue-800 border-blue-500 border-0;
 }
 
+.selected-label {
+  @apply bg-slate-800 shadow-sm transition-all;
+}
+
 @theme {
   --animate-fade-in-scale: fade-in-scale 0.3s ease-out;
 
