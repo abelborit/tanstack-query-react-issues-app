@@ -113,3 +113,16 @@ export default tseslint.config([
     está bien, pero si tenemos varios factores que pueden variar y queremos que
     sea insensible a su posición, hay consideraciones diferentes y eso es lo que
     veremos en esta sección.
+
+---
+
+- En esta siguiente sección veremos puntualmente:
+  - Paginación tradicional
+    - Siguiente página
+    - Página anterior
+    - Número de página
+    - Caché por página y condiciones
+
+  - Infinite Scroll
+    - Cargar siguientes registros
+    - Manejar caché del infinite scroll
