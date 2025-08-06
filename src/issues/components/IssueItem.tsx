@@ -75,6 +75,17 @@ export const IssueItem = ({ issue }: IssueItemProps) => {
           <span>#{issue.number} opened 2 days ago by </span>
           <span className="font-bold">{issue.user.login}</span>
         </p>
+
+        <div className="flex flex-wrap gap-2">
+          {issue.labels.map((element) => (
+            <span
+              key={element.name}
+              className="text-xs mt-2  rounded-full bg-slate-700 py-1 px-3"
+            >
+              {element.name}
+            </span>
+          ))}
+        </div>
       </div>
 
       <img
