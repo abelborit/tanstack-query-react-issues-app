@@ -1,9 +1,28 @@
+import { useState } from 'react';
+
 import { LoadingSpinner } from '../../shared/components';
 import { useIssuesQuery } from '../hooks';
+import type { IssueState } from '../interfaces/issue-repo-react.interface';
 import { IssueItem } from './IssueItem';
 
+interface IssueStatesInterface {
+  label: string;
+  value: IssueState;
+}
+
+const issueStates: IssueStatesInterface[] = [
+  { label: 'All', value: 'all' },
+  { label: 'Open', value: 'open' },
+  { label: 'Closed', value: 'closed' },
+];
+
 export const IssueList = () => {
-  const { issuesQuery } = useIssuesQuery();
+  const [issueState, setIssueState] = useState<IssueState>('all');
+  const { issuesQuery } = useIssuesQuery({issueState});
+
+  const handleChangeIssueState = (newIssueState: IssueState) => {
+    setIssueState(newIssueState);
+  };
 
   if (issuesQuery.isLoading || issuesQuery.isFetching) {
     return <LoadingSpinner />;
@@ -21,26 +40,17 @@ export const IssueList = () => {
 
   return (
     <>
-      {/* Botones de All, Open, Closed */}
       <div className="flex gap-4 animate-fade-in-scale">
-        <button
-          className="btn active"
-          type="button"
-        >
-          All
-        </button>
-        <button
-          className="btn"
-          type="button"
-        >
-          Open
-        </button>
-        <button
-          className="btn"
-          type="button"
-        >
-          Closed
-        </button>
+        {issueStates.map(({ label, value }) => (
+          <button
+            key={value}
+            className={`btn cursor-pointer ${issueState === value ? 'active' : ''}`}
+            type="button"
+            onClick={() => handleChangeIssueState(value)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
       {/* Lista de issues */}

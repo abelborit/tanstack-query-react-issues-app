@@ -13,7 +13,7 @@ export interface IssueRepoReactInterface {
   title: string;
   user: User;
   labels: LabelRepoReactInterface[];
-  state: 'open' | 'close';
+  state: IssueState;
   locked: boolean;
   assignee: null;
   assignees: unknown[];
@@ -35,6 +35,8 @@ export interface IssueRepoReactInterface {
   state_reason: null;
   sub_issues_summary?: SubIssuesSummary;
 }
+
+export type IssueState = 'all' | 'open' | 'closed';
 
 export interface PullRequest {
   url: string;
