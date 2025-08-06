@@ -54,7 +54,7 @@ export const IssueItem = ({ issue }: IssueItemProps) => {
       onMouseEnter={handlePrefetchDataQuery}
       // onMouseEnter={presetDataQuery}
     >
-      {issue.state === 'close' ? (
+      {issue.state === 'closed' ? (
         <FiCheckCircle
           className="min-w-10"
           color="green"
